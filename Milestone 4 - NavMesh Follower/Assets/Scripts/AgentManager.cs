@@ -1,20 +1,22 @@
 using UnityEngine;
 
+/* -NOTES- (07.16.24)
+    - only 1/4 agents follow the player (the type of agent was the issue)
+    - duplicate the Luigi prefab for the others instead (it didn't work as the agent type was the problem)
+    - 
+*/
+
 public class AgentManager : MonoBehaviour {
 
-    GameObject[] agents;
+    [SerializeField] GameObject target;
+    [SerializeField] GameObject[] agents;
     
     void Start() {
         agents = GameObject.FindGameObjectsWithTag("AI");
     }
 
     void Update() {
-        if (Input.GetMouseButtonDown(0)) {
-            RaycastHit hit;
-
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 1000))
-                foreach (GameObject ai in agents)
-                    ai.GetComponent<AIController>().agent.SetDestination(hit.point);
-        }
+        foreach (GameObject ai in agents)
+            ai.GetComponent<AIController>().agent.SetDestination(target.transform.position);
     }
 }
