@@ -1,17 +1,16 @@
 ﻿using UnityEngine;
 
-public class Movement : MonoBehaviour { 
-    public float speed = 10;
-    public float rotationSpeed = 200;
-    public float currentSpeed = 0;
+public class Movement : MonoBehaviour {
+
+    public float moveSpeed = 10f, rotSpeed = 200f, currSpeed = 0f;
 
     void LateUpdate() {
-        float translation = Input.GetAxis("Vertical") * speed * Time.deltaTime;
-        float rotation = Input.GetAxis("Horizontal") * rotationSpeed * Time.deltaTime;
+        float translation = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
+        float rotation = Input.GetAxis("Horizontal") * rotSpeed * Time.deltaTime;
 
-        transform.Translate(0, 0, translation);
-        currentSpeed = translation;
+        transform.Translate(0f, 0f, translation);
+        currSpeed = translation;
 
-        transform.Rotate(0, rotation, 0);
+        transform.Rotate(0f, rotation, 0f);
     }
 }
